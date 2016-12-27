@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>原生js设置指定的input[type="checkbox"]或input[type="radio"]为选中状态</title>
+	<script type="text/javascript" src="js/setChecked.js"></script>
+	<style type="text/css">
+		input[type="text"] {width: 300px;}
+	</style>
+</head>
+<body>
+
+	<label>设置选中的checkbox如下：</label><br/><br/>
+	<div id="cb-container">
+		<input type="checkbox" name="tcb" value="checkbox1" /><label>checkbox1</label><br/>
+		<input type="checkbox" name="tcb" value="checkbox2" /><label>checkbox2</label><br/>
+		<input type="checkbox" name="tcb" value="checkbox3" /><label>checkbox3</label><br/>
+		<input type="checkbox" name="tcb" value="checkbox4" /><label>checkbox4</label><br/>
+		<input type="checkbox" name="tcb" value="checkbox5" /><label>checkbox5</label><br/>
+	</div>
+	<hr/>
+
+	<label>设置选中的radio如下：</label><br/><br/>
+	<div id="rd-container">
+		<input type="radio" name="trd" value="radio1" /><label>radio1</label><br/>
+		<input type="radio" name="trd" value="radio2" /><label>radio2</label><br/>
+		<input type="radio" name="trd" value="radio3" /><label>radio3</label><br/>
+		<input type="radio" name="trd" value="radio4" /><label>radio4</label><br/>
+		<input type="radio" name="trd" value="radio5" /><label>radio5</label><br/>
+	</div>
+	<hr/>
+
+	<label>填写需要设置选中的值</label><br/><br/>
+	<input id="cbv" type="text" value="checkbox2,checkbox3" /><br/><br/>
+	<input id="rdv" type="text" value="radio4" /><br/><br/>
+
+	<button id="checkboxBtn">设置选中的input[type="checkbox"]</button><br/><br/>
+	<button id="radioBtn">设置选中的input[type="radio"]</button>
+
+
+	<script type="text/javascript">
+		document.getElementById('checkboxBtn').onclick = function(){
+
+			var tmpArray = document.getElementById('cbv').value.split(',');
+			JS_setCheck('tcb',tmpArray,document.getElementById('cb-container'));
+
+		}
+		document.getElementById('radioBtn').onclick = function(){
+
+			var tmpArray = document.getElementById('rdv').value.split(',');
+			JS_setCheck('trd',tmpArray,document.getElementById('rd-container'));
+			
+		}
+	</script>
+</body>
+</html>
