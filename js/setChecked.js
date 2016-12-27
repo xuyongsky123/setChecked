@@ -30,3 +30,59 @@ function JS_setCheck(nameStr,valueList,fatherObj){
 		}
 	}
 }
+
+//选择复选框组 选择全部记录/取消全部记录
+function JS_setCheckAll(nameStr, valueStr, fatherObj){
+	if (!fatherObj || typeof(fatherObj)!= "object"){
+		var Checkers = document.getElementsByTagName("input");
+	}else{
+		var Checkers = fatherObj.getElementsByTagName("input");
+	}
+	if (!Checkers) return false;
+	
+	var tempArray = [];
+	for (var i=0; i<Checkers.length; i++){
+		if ((Checkers[i].type == "checkbox" || Checkers[i].type == "radio") && Checkers[i].name == nameStr){
+			tempArray.push(Checkers[i]);
+		}
+	}
+	if (tempArray.length <= 0) return false;
+	var nowType = "checkbox";
+	if (tempArray[0].type == "radio"){
+		nowType = "radio"
+	}
+	
+	valueStr = valueStr + "";
+	if (valueStr == "true" || valueStr == "false"){
+		if (nowType == "radio"){
+			var setValue = valueStr == "true" ? true : false;
+			if (setValue == true){
+				tempArray[0].checked = true;
+			}else{
+				for (var i=0; i<tempArray.length; i++){
+					tempArray[i].checked = false;
+				}
+			}
+		}else{
+			for (var i=0; i<tempArray.length; i++){
+				var setValue = valueStr == "true" ? true : false;
+				tempArray[i].checked = setValue;
+			}
+		}
+	}else{
+		var compareStr = "," + valueStr + ",";
+		if (nowType == "radio"){
+			var valueArray = compareStr.split(",");
+			compareStr = "," + valueArray[1] + ",";
+		}
+		for (var i=0; i<tempArray.length; i++){
+			var nowValue = "," + tempArray[i].value + ",";
+			if (compareStr.indexOf(nowValue) >= 0){
+				tempArray[i].checked = true;
+			}else{
+				tempArray[i].checked = false;
+			}
+		}
+	}
+	return true;
+}

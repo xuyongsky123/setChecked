@@ -35,7 +35,9 @@
 	<input id="rdv" type="text" value="radio4" /><br/><br/>
 
 	<button id="checkboxBtn">设置选中的input[type="checkbox"]</button><br/><br/>
-	<button id="radioBtn">设置选中的input[type="radio"]</button>
+	<button id="radioBtn">设置选中的input[type="radio"]</button><br/><br/>
+	<button id="okBtn">设置全部input[type="checkbox"]为选中状态</button><br/><br/>
+	<button id="cancelBtn">取消全部设置input[type="checkbox"]选中状态</button>
 
 
 	<script type="text/javascript">
@@ -50,6 +52,12 @@
 			var tmpArray = document.getElementById('rdv').value.split(',');
 			JS_setCheck('trd',tmpArray,document.getElementById('rd-container'));
 			
+		}
+		document.getElementById('okBtn').onclick = function(){
+			JS_setCheckAll('tcb',true,document.getElementById('cb-container'));
+		}
+		document.getElementById('cancelBtn').onclick = function(){
+			JS_setCheckAll('tcb',false,document.getElementById('cb-container'));
 		}
 	</script>
 </body>
